@@ -7,6 +7,7 @@ import {
   Lock,
   HomeIcon,
 } from "lucide-react";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
@@ -14,14 +15,19 @@ const Navbar = () => {
   const { user, logout } = useUserStore();
   const isAdmin = user?.role === "admin";
   const { cart } = useCartStore();
+  // sm:text-2xl font-bold text-[#fffadc] items-center space-x-2 flex
   return (
-    <header className="fixed top-0 left-0 w-full  bg-opacity-90 backdrop-blur-md shadow-lg z-40 py-4">
-      <div className="container mx-auto px-4 py-3 flex justify-between">
+    <header className="fixed top-0 left-0 w-full  bg-opacity-90 backdrop-blur-md shadow-lg z-40 h-24">
+      <div className="container mx-auto px-4  flex justify-between items-center">
         <Link
           to="/"
-          className="  sm:text-2xl font-bold text-[#fffadc] items-center space-x-2 flex"
+          className="w-40 h-32 flex items-center justify-center mt-2 "
         >
-          E-Commerce
+          <img
+            src={logo}
+            alt="E-commerce"
+            className="w-full h-full object-contain"
+          />
         </Link>
         <nav className=" flex flex-wrap items-center gap-4 sm:pr-12 ">
           <Link
