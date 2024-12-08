@@ -10,7 +10,7 @@ const CategoryItem = ({ category }) => {
               src={category.imageUrl}
               alt={category.name}
               className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-              Loading="lazy"
+              loading="lazy"
             />
 
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>

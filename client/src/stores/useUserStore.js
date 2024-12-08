@@ -9,7 +9,7 @@ export const useUserStore = create((set, get) => ({
   checkingAuth: true,
 
   signup: async ({ name, email, password, confirmPassword }) => {
-    set({ loading: false });
+    set({ loading: true });
 
     if (password !== confirmPassword) {
       set({ loading: false });
@@ -35,11 +35,17 @@ export const useUserStore = create((set, get) => ({
         email,
         password,
       });
-      console.log(res.data);
+
       set({ user: res.data, loading: false });
     } catch (error) {
+      // console.log("error in login", error);
       set({ loading: false });
-      toast.error(error.response.data.message || "error occured in login");
+      if (error) {
+        toast.error(error.response.data.message);
+        // console.log("error while", error.response.data.message);
+      } else {
+        toast.error("An error occurred during login");
+      }
     }
   },
 
@@ -95,7 +101,7 @@ axiosInstance.interceptors.response.use(
         await refreshPromise;
         refreshPromise = null;
         return axiosInstance(originalRequest);
-      } catch (error) {
+      } catch (refreshError) {
         useUserStore.getState().logout();
         return Promise.reject(refreshError);
       }

@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +16,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const navigate = useNavigate();
+  const { login, loading } = useUserStore();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -26,11 +25,10 @@ const LoginPage = () => {
       [id]: value,
     }));
   };
-  const { login, loading } = useUserStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
     login(formData);
   };
   return (
@@ -75,7 +73,9 @@ const LoginPage = () => {
                   type="text"
                   id="email"
                   value={formData.email}
+                  // value={email}
                   onChange={handleChange}
+                  // onChange={(e) => setEmail(e.target.value)}
                   required
                   className="block w-full px-3 py-1 pl-10 bg-gray-950 border border-gray-600 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 "
                   placeholder="enter your email"
@@ -101,7 +101,9 @@ const LoginPage = () => {
                   type="password"
                   id="password"
                   value={formData.password}
+                  // value={password}
                   onChange={handleChange}
+                  // onChange={(e) => setPassword(e.target.value)}
                   required
                   className="block w-full px-3 py-1 pl-10 bg-gray-950 border border-gray-600 rounded-md shadow-md placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 "
                   placeholder="enter your password"

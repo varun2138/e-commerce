@@ -42,7 +42,10 @@ const FeaturedProducts = ({ featuredProducts }) => {
               }}
             >
               {featuredProducts?.map((product) => (
-                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0 px-2">
+                <div
+                  key={product._id}
+                  className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0 px-2"
+                >
                   <ProductCard key={product._id} product={product} />
                 </div>
               ))}

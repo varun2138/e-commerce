@@ -59,9 +59,10 @@ const login = async (req, res) => {
         message: "user logged In successfully",
       });
     } else {
-      return res.status(401).json({ message: "invalid email or password" });
+      res.status(400).json({ message: "invalid email or password" });
     }
   } catch (error) {
+    console.log("Error in login controller", error.message);
     return res
       .status(500)
       .json({ message: `Error while logging out !!! ${error.message}` });

@@ -25,6 +25,7 @@ const App = () => {
     if (!user) return;
     getCartItems();
   }, [getCartItems, user]);
+
   if (checkingAuth) {
     return (
       <div className="z-50 text-white bg-black w-full min-h-screen flex justify-center items-center">

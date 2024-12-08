@@ -1,6 +1,7 @@
 import Coupon from "../models/coupon.model.js";
 import Order from "../models/order.model.js";
 import stripe from "../lib/stripe.js";
+import User from "../models/user.model.js";
 
 export const createCheckoutSession = async (req, res) => {
   try {
@@ -114,6 +115,10 @@ export const checkoutSuccess = async (req, res) => {
 
       await newOrder.save();
 
+      const user = await User.findById(session.metadata.userId);
+      user.cartItems = [];
+      await user.save();
+
       res.status(200).json({
         success: true,
         message:
@@ -123,12 +128,10 @@ export const checkoutSuccess = async (req, res) => {
     }
   } catch (error) {
     console.error("Error processing successful checkout:", error);
-    res
-      .status(500)
-      .json({
-        message: "Error processing successful checkout",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error processing successful checkout",
+      error: error.message,
+    });
   }
 };
 
