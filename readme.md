@@ -10,7 +10,7 @@ This project includes two roles: **Client** and **Admin**. The client role is as
   <img src="docs/screenshots/client_ui_1.png" alt="Client UI 1" width="200">
   <img src="docs/screenshots/client_ui_2.png" alt="Client UI 2" width="200">
   <img src="docs/screenshots/client_ui_3.png" alt="Client UI 3" width="200">
-  <img src="docs/screenshots/cart_ui.png" alt="Cart UI" width="200">
+  <img src="docs/screenshots/cart_page.png" alt="Cart UI" width="200">
   <img src="docs/screenshots/login.png" alt="Login UI" width="200">
   <img src="docs/screenshots/register.png" alt="Register UI" width="200">
 </div>
